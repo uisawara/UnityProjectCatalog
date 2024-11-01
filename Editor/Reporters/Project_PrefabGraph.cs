@@ -1,5 +1,6 @@
-﻿using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using UnityEditor;
@@ -25,14 +26,17 @@ public static class Project_PrefabGraph
         foreach (var guid in prefabGuids)
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
-            var folderPath = System.IO.Path.GetDirectoryName(path);
+            var folderPath = Path.GetDirectoryName(path);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
 
             // プレハブリストに追加
             if (!folderPrefabs.ContainsKey(folderPath))
+            {
                 folderPrefabs[folderPath] = new List<string>();
+            }
 
-            folderPrefabs[folderPath].Add(prefab.name);
+            folderPrefabs[folderPath]
+                .Add(prefab.name);
         }
 
         // プレハブとバリアントの関係をsubgraphで追加
@@ -52,7 +56,7 @@ public static class Project_PrefabGraph
                     Debug.LogError($"skip : {prefabPath}");
                     continue;
                 }
-                
+
                 // プレハブ名を有効な形式に変換
                 var sanitizedPrefabName = SanitizeName(prefabName);
 

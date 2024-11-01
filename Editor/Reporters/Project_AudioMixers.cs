@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Linq;
+﻿using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine.Audio;
@@ -16,7 +16,8 @@ internal sealed class Project_AudioMixers
 
         // プロジェクト内のすべての Audio Mixer を検索
         var mixerGuids = AssetDatabase.FindAssets("t:AudioMixer");
-        var mixerPaths = mixerGuids.Select(AssetDatabase.GUIDToAssetPath).ToList();
+        var mixerPaths = mixerGuids.Select(AssetDatabase.GUIDToAssetPath)
+            .ToList();
 
         if (mixerPaths.Count == 0)
         {
@@ -28,7 +29,10 @@ internal sealed class Project_AudioMixers
         foreach (var path in mixerPaths)
         {
             var mixer = AssetDatabase.LoadAssetAtPath<AudioMixer>(path);
-            if (mixer == null) continue;
+            if (mixer == null)
+            {
+                continue;
+            }
 
             log.AppendLine($"\n## Audio Mixer: {mixer.name}");
             log.AppendLine($"- Path: {path}");
@@ -45,7 +49,7 @@ internal sealed class Project_AudioMixers
                 foreach (var group in groups)
                 {
                     log.AppendLine($"  - Group: {group.name}");
-                    
+
                     // ボリュームとピッチの初期値の取得
                     float volume, pitch;
                     group.audioMixer.GetFloat("Volume", out volume);

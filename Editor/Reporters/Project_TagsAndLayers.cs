@@ -15,6 +15,7 @@ internal sealed class Project_TagsAndLayers
         {
             log += $"- Tag: {tag}\n";
         }
+
         log += "\n";
 
         log += "# Sorting Layers\n";
@@ -23,6 +24,7 @@ internal sealed class Project_TagsAndLayers
         {
             log += $"- {sortingLayer.name}, ID: {sortingLayer.id}\n";
         }
+
         log += "\n";
 
         log += "# Layers\n";
@@ -34,6 +36,7 @@ internal sealed class Project_TagsAndLayers
                 log += $"- Layer {i}: {layerName}\n";
             }
         }
+
         log += "\n";
 
         return log;

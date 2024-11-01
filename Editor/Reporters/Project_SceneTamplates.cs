@@ -30,15 +30,15 @@ public static class Project_SceneTamplates
             log.AppendLine($"- {sceneTemplate.name}");
             log.AppendLine($"  - {path}");
 
-        /*
-            // Scene のアセット情報取得
-            var dependencies = AssetDatabase.GetDependencies(path, true);
-            log.AppendLine("  - Dependencies:");
-            foreach (var dependency in dependencies)
-            {
-                log.AppendLine($"    - {dependency}");
-            }
-        */
+            /*
+                // Scene のアセット情報取得
+                var dependencies = AssetDatabase.GetDependencies(path, true);
+                log.AppendLine("  - Dependencies:");
+                foreach (var dependency in dependencies)
+                {
+                    log.AppendLine($"    - {dependency}");
+                }
+            */
 
             log.AppendLine();
         }

@@ -24,20 +24,21 @@ internal sealed class Project_AudioSettings
 
         // Ambisonic設定
         log.AppendLine("\n## Ambisonic Settings");
-        string ambisonicPluginName = GetInternalPluginName("GetAmbisonicDecoderPluginName");
-        bool ambisonicDecoderEnabled = !string.IsNullOrEmpty(ambisonicPluginName);
+        var ambisonicPluginName = GetInternalPluginName("GetAmbisonicDecoderPluginName");
+        var ambisonicDecoderEnabled = !string.IsNullOrEmpty(ambisonicPluginName);
         log.AppendLine($"- Ambisonic Decoder Enabled: {ambisonicDecoderEnabled}");
         log.AppendLine($"- Ambisonic Decoder Plugin: {(ambisonicDecoderEnabled ? ambisonicPluginName : "None")}");
 
         // Spatializer設定
         log.AppendLine("\n## Spatializer Settings");
-        string spatializerPluginName = GetInternalPluginName("GetSpatializerPluginName");
-        bool spatializerEnabled = !string.IsNullOrEmpty(spatializerPluginName);
+        var spatializerPluginName = GetInternalPluginName("GetSpatializerPluginName");
+        var spatializerEnabled = !string.IsNullOrEmpty(spatializerPluginName);
         log.AppendLine($"- Spatializer Enabled: {spatializerEnabled}");
         log.AppendLine($"- Spatializer Plugin: {(spatializerEnabled ? spatializerPluginName : "None")}");
 
         // AudioManagerの設定を取得
-        var audioManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/AudioManager.asset")[0]);
+        var audioManager =
+            new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/AudioManager.asset")[0]);
         log.AppendLine($"- Volume: {audioManager.FindProperty("m_Volume").floatValue}");
         log.AppendLine($"- Rolloff Scale: {audioManager.FindProperty("Rolloff Scale").floatValue}");
         log.AppendLine($"- Doppler Factor: {audioManager.FindProperty("m_DopplerFactor")?.floatValue ?? 0}");
@@ -53,7 +54,7 @@ internal sealed class Project_AudioSettings
 
         return log.ToString();
     }
-    
+
     private static string GetInternalPluginName(string methodName)
     {
         try
@@ -69,6 +70,7 @@ internal sealed class Project_AudioSettings
         {
             Debug.LogError($"Error accessing {methodName}: {e.Message}");
         }
+
         return null;
     }
 }

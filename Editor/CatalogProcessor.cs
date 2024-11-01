@@ -89,16 +89,16 @@ public static class CatalogProcessor
                 var generateMethod = reportClass.GetMethod("GenerateReport", BindingFlags.Static | BindingFlags.Public);
                 if (generateMethod != null)
                 {
-                    var reportContent = generateMethod.Invoke(null, new object[] {scene}) as string;
+                    var reportContent = generateMethod.Invoke(null, new object[] { scene }) as string;
                     log.Append(reportContent);
                 }
                 else
                 {
                     Debug.LogWarning($"{reportClass.Name} is missing a static GenerateReport method.");
-                    continue;
                 }
             }
         }
+
         // 元のシーンに戻す
         EditorSceneManager.OpenScene(currentScenePath);
 
@@ -106,7 +106,8 @@ public static class CatalogProcessor
         {
             var fileName = $"{reportClass.Name}.md";
             var filePath = Path.Combine(reportPath, fileName);
-            File.WriteAllText(filePath, logMap[reportClass.FullName].ToString());
+            File.WriteAllText(filePath, logMap[reportClass.FullName]
+                .ToString());
             Debug.Log($"Generated report: {fileName}");
         }
     }

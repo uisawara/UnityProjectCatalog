@@ -41,9 +41,9 @@ public static class Project_Physics
 
         // 有効なレイヤーのみ取得
         var validLayers = new List<string>();
-        for (int i = 0; i < 32; i++)
+        for (var i = 0; i < 32; i++)
         {
-            string layerName = LayerMask.LayerToName(i);
+            var layerName = LayerMask.LayerToName(i);
             if (!string.IsNullOrEmpty(layerName))
             {
                 validLayers.Add(layerName);
@@ -56,26 +56,29 @@ public static class Project_Physics
         {
             log.Append($" {layer} |");
         }
+
         log.AppendLine();
 
         // 境界線行
         log.Append("|-");
-        for (int i = 0; i < validLayers.Count; i++)
+        for (var i = 0; i < validLayers.Count; i++)
         {
             log.Append("|-");
         }
+
         log.AppendLine("|");
 
         // 各レイヤー行
-        for (int i = 0; i < validLayers.Count; i++)
+        for (var i = 0; i < validLayers.Count; i++)
         {
             log.Append($"| {validLayers[i]} |");
-            for (int j = 0; j < validLayers.Count; j++)
+            for (var j = 0; j < validLayers.Count; j++)
             {
-                int layerA = LayerMask.NameToLayer(validLayers[i]);
-                int layerB = LayerMask.NameToLayer(validLayers[j]);
+                var layerA = LayerMask.NameToLayer(validLayers[i]);
+                var layerB = LayerMask.NameToLayer(validLayers[j]);
                 log.Append(Physics.GetIgnoreLayerCollision(layerA, layerB) ? " Ignored |" : " Collide |");
             }
+
             log.AppendLine();
         }
 

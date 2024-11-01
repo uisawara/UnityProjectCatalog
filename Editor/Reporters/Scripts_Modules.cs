@@ -26,6 +26,7 @@ internal sealed class Scripts_Modules
         {
             return string.Empty;
         }
+
         if (File.Exists(gitModulesPath))
         {
             log.AppendLine("# Git Submodules");
@@ -71,22 +72,20 @@ internal sealed class Scripts_Modules
 
     private static string FindGitModules(string startPath, string fileName)
     {
-        string currentPath = startPath;
+        var currentPath = startPath;
 
         while (true)
         {
-            string gitDirectoryPath = Path.Combine(currentPath, ".git");
+            var gitDirectoryPath = Path.Combine(currentPath, ".git");
             if (Directory.Exists(gitDirectoryPath))
             {
-                string gitModulesPath = Path.Combine(currentPath, fileName);
+                var gitModulesPath = Path.Combine(currentPath, fileName);
                 if (File.Exists(gitModulesPath))
                 {
                     return gitModulesPath;
                 }
-                else
-                {
-                    return null;
-                }
+
+                return null;
             }
 
             if (Path.GetPathRoot(currentPath) == currentPath)
@@ -99,7 +98,7 @@ internal sealed class Scripts_Modules
 
         return null;
     }
-    
+
     private static string LogNuGetPackages()
     {
         var log = new StringBuilder();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using JetBrains.Annotations;
 using UnityEditor;
@@ -12,7 +13,7 @@ public sealed class Project_PrefabStructure
     public static string GenerateReport()
     {
         var log = new StringBuilder();
-        
+
         // Mermaid グラフ出力開始
         log.AppendLine("# Prefab Variant Structure");
 
@@ -24,14 +25,17 @@ public sealed class Project_PrefabStructure
         foreach (var guid in prefabGuids)
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
-            var folderPath = System.IO.Path.GetDirectoryName(path);
+            var folderPath = Path.GetDirectoryName(path);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
 
             // プレハブリストに追加
             if (!folderPrefabs.ContainsKey(folderPath))
+            {
                 folderPrefabs[folderPath] = new List<string>();
+            }
 
-            folderPrefabs[folderPath].Add(prefab.name);
+            folderPrefabs[folderPath]
+                .Add(prefab.name);
         }
 
         // プレハブとバリアントの関係をsubgraphで追加
@@ -53,7 +57,7 @@ public sealed class Project_PrefabStructure
                     Debug.LogError($"skip : {prefabPath}");
                     continue;
                 }
-                
+
                 // プレハブバリアントである場合、親プレハブを取得
                 var prefabType = PrefabUtility.GetPrefabAssetType(prefab);
                 if (prefabType == PrefabAssetType.Variant)

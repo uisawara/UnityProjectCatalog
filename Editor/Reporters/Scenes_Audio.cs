@@ -12,7 +12,7 @@ internal sealed class Scenes_Audio
     {
         var log = new StringBuilder();
         log.AppendLine($"# {scene.name} - Scene Report");
-        
+
         // 2. AudioListener の情報を取得
         log.AppendLine("\n## Audio Listeners");
 

@@ -20,7 +20,8 @@ internal static class Scripts_ZenjectContexts
         var projectContextPath = AssetDatabase.FindAssets("t:ProjectContext");
         if (projectContextPath.Length > 0)
         {
-            var projectContext = AssetDatabase.LoadAssetAtPath<ProjectContext>(AssetDatabase.GUIDToAssetPath(projectContextPath[0]));
+            var projectContext =
+ AssetDatabase.LoadAssetAtPath<ProjectContext>(AssetDatabase.GUIDToAssetPath(projectContextPath[0]));
             if (projectContext != null)
             {
                 log.AppendLine("# ProjectContext");
