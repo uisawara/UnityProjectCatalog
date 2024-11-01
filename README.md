@@ -23,7 +23,7 @@ Wouldn't it be easier to understand the latest configuration of the project with
   * Open **Window/Package Manager** in Unity Editor and install the package from git URL using the following:
 
   ```
-  https://github.com/uisawara/UnityProjectCatalog
+  https://github.com/uisawara/UnityProjectCatalog.git
   ```
 
   * It uses `Newtonsoft.Json` as a dependency module. Please install it if it's not already in your project.

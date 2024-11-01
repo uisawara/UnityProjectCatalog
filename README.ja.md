@@ -22,7 +22,7 @@ Unityのプロジェクトではスクリプト、グラフィック、音、物
   * Unity Editorで Window/Package Manager を開き、Add package from git URLで以下をインストールします。
 
   * ```
-    https://github.com/uisawara/UnityProjectCatalog
+    https://github.com/uisawara/UnityProjectCatalog.git
     ```
 
   * 依存モジュールとして Newtonsoft.Json を使っています。プロジェクトにインストールされていない場合は導入してください。
