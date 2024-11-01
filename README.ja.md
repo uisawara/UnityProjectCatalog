@@ -37,7 +37,7 @@ Unityのプロジェクトではスクリプト、グラフィック、音、物
 
 ### レポート種類
 
-* /Editor/Reporters フォルダのファイル一式がレポートの種類です。
+* [/Editor/Reporters](https://github.com/uisawara/UnityProjectCatalog/tree/main/Editor/Reporters) フォルダのファイル一式がレポートの種類です。
 * 幾つかの切り口でのレポートを用意しています。
   * スコープ別
     * Project
