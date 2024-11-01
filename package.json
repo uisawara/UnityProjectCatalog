@@ -1,0 +1,11 @@
+{
+	"name": "com.github.uisawara.unityprojectcatalog",
+	"version": "0.0.1",
+	"displayName": "UnityProjectCatalog",
+	"description": "Assets to be cataloged to get an overall picture of Unity's Project structure.",
+	"unity": "2020.1",
+	"author": {
+		"name": "uisawara",
+		"url": "https://github.com/uisawara/UnityProjectCatalog"
+	}
+}
